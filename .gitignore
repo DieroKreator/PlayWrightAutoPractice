@@ -1,0 +1,37 @@
+# Node.js modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Playwright files
+playwright-report/
+playwright/.cache/
+test-results/
+*.zip # For example, downloaded browser zip files
+
+# VS Code files
+.vscode/
+.history/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Blob storage files
+/blob-report/
