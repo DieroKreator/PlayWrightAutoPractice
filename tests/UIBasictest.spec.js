@@ -1,13 +1,13 @@
-const {test, expect} = require('playwright/test');
+const { test, expect } = require('playwright/test');
 
-test('Browser Context-Validating Error login', async ({browser})=> { 
-    
-    const context = await browser.newContext(); 
-    const page = await context.newPage(); 
+test('Browser Context-Validating Error login', async ({ browser }) => {
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
     const username = page.locator("#username");
     const signIn = page.locator("#signInBtn");
     const cardTitles = page.locator(".card-body a");
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/"); 
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
     //css
     await username.fill("rahulshetty");
@@ -27,11 +27,26 @@ test('Browser Context-Validating Error login', async ({browser})=> {
     console.log(allTitles);
 });
 
-test('Page Playwright test', async ({page})=> { 
-    
+test('Page Playwright test', async ({ page }) => {
+
     await page.goto("https://google.com");
     //get title - assertion
     console.log(await page.title());
     await expect(page).toHaveTitle("Google");
     // expect(await page.title()).toBe("Google");
+});
+
+test('UI Controls', async ({ page }) => {
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const username = page.locator("#username");
+    const signIn = page.locator("#signInBtn");
+    const dropdown = page.locator("select.form-control");
+    await dropdown.selectOption("consult");
+    // await page.locator(".radiotextsty").last().click();
+    // await page.locator("#okayBtn").click();
+    console.log(await page.locator(".radiotextsty").last().isChecked());
+    await expect(page.locator(".radiotextsty").last()).toBeChecked();
+    await page.locator("#terms").click();
+    await expect (page.locator("#terms")).toBeChecked();
+    await page.locator("terms").uncheck();
 });
