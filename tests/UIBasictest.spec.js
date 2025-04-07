@@ -49,4 +49,5 @@ test('UI Controls', async ({ page }) => {
     await page.locator("#terms").click();
     await expect (page.locator("#terms")).toBeChecked();
     await page.locator("terms").uncheck();
+    expect (await page.locator("#terms").isChecked()).toBeFalsy();
 });
