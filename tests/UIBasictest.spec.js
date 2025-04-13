@@ -49,7 +49,7 @@ test('UI Controls', async ({ page }) => {
     await expect(page.locator(".radiotextsty").last()).toBeChecked();
     await page.locator("#terms").click();
     await expect (page.locator("#terms")).toBeChecked();
-    await page.locator("terms").uncheck();
+    await page.locator("#terms").uncheck();
     expect (await page.locator("#terms").isChecked()).toBeFalsy();
     await expect(documentLink).toHaveAttribute("class", "blinkingText");
 });
@@ -66,7 +66,7 @@ test('Child windows hadl', async ({ browser }) => {
         context.waitForEvent('page'), //listen for any new page pending,rejected, fulfilled
         documentLink.click(), // new page is opened
     ])
-    text = await newPage.locator(".red").textContent();
+    const text = await newPage.locator(".red").textContent();
     const arrayText = text.split("@");
     const domain = arrayText[1].split(" ")[0];
     console.log(text);
