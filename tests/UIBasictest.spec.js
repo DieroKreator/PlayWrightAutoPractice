@@ -36,15 +36,15 @@ test('Page Playwright test', async ({ page }) => {
     // expect(await page.title()).toBe("Google");
 });
 
-test('UI Controls', async ({ page }) => {
+test.only('UI Controls', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const username = page.locator("#username");
     const signIn = page.locator("#signInBtn");
     const documentLink = page.locator("a[href*='documents-request']");
     const dropdown = page.locator("select.form-control");
     await dropdown.selectOption("consult");
-    // await page.locator(".radiotextsty").last().click();
-    // await page.locator("#okayBtn").click();
+    await page.locator(".radiotextsty").last().click();
+    await page.locator("#okayBtn").click();
     console.log(await page.locator(".radiotextsty").last().isChecked());
     await expect(page.locator(".radiotextsty").last()).toBeChecked();
     await page.locator("#terms").click();
@@ -54,7 +54,7 @@ test('UI Controls', async ({ page }) => {
     await expect(documentLink).toHaveAttribute("class", "blinkingText");
 });
 
-test.only('Child windows hadl', async ({ browser }) => {
+test('Child windows hadl', async ({ browser }) => {
     
     const context = await browser.newContext();
     const page = await context.newPage();
