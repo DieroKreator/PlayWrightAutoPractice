@@ -36,7 +36,7 @@ test('Page Playwright test', async ({ page }) => {
     // expect(await page.title()).toBe("Google");
 });
 
-test.only('UI Controls', async ({ page }) => {
+test('UI Controls', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const username = page.locator("#username");
     const signIn = page.locator("#signInBtn");
@@ -54,7 +54,7 @@ test.only('UI Controls', async ({ page }) => {
     await expect(documentLink).toHaveAttribute("class", "blinkingText");
 });
 
-test('Child windows hadl', async ({ browser }) => {
+test.only('Child windows hadl', async ({ browser }) => {
     
     const context = await browser.newContext();
     const page = await context.newPage();
