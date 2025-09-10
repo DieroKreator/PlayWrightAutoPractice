@@ -33,14 +33,14 @@ test.only('Client App login', async ({ page }) => {
 
     //Identify edit box and enter one by one
     await page.locator("input[placeholder*='Select Country']").pressSequentially('ind');
-    const options = page.locator(".ta-results").first();
-    await options.waitFor();
+    const dropdown = page.locator(".ta-results").first();
+    await dropdown.waitFor();
 
-    const optionsCount = await options.locator("button").count();
+    const optionsCount = await dropdown.locator("button").count();
     for (let i = 0; i < optionsCount; ++i) {
-        const text = await options.locator("button").nth(i).textContent();
+        const text = await dropdown.locator("button").nth(i).textContent();
         if (text === " India") {
-            await options.locator("button").nth(i).click();
+            await dropdown.locator("button").nth(i).click();
             break;
         }
     }
