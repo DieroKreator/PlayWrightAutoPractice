@@ -32,10 +32,11 @@ test.only('Client App login', async ({ page }) => {
     await page.locator("text=Checkout").click();
 
     //Identify edit box and enter one by one
-    await page.locator("input[placeholder*='Select Country']").pressSequentially('ind');
+    await page.locator("input[placeholder*='Select Country']").pressSequentially('ind', { delay: 150 });
     const dropdown = page.locator(".ta-results").first();
     await dropdown.waitFor();
 
+    //Iterate on all the options and select India
     const optionsCount = await dropdown.locator("button").count();
     for (let i = 0; i < optionsCount; ++i) {
         const text = await dropdown.locator("button").nth(i).textContent();
@@ -44,10 +45,9 @@ test.only('Client App login', async ({ page }) => {
             break;
         }
     }
-
-    expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
     await page.pause();
 
+    expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
     await page.locator(".action__submit").click();
 
     expect(page.locator(".hero-primary").first()).toHaveText(" Thankyou for the order. ");
