@@ -54,6 +54,7 @@ test.only('Client App login', async ({ page }) => {
     expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
     await page.locator(".action__submit").click();
 
+    await page.locator("tbody").nth(3).waitFor();
     expect(page.locator(".hero-primary").first()).toHaveText(" Thankyou for the order. ");
     const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
     console.log(orderId);
