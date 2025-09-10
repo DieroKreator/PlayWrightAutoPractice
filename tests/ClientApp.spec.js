@@ -31,6 +31,11 @@ test.only('Client App login', async ({ page }) => {
     expect(bool).toBeTruthy();
     await page.locator("text=Checkout").click();
 
+    // await page.pause();
+    /* TO CHECK */
+    // const cvvTxtBox = await page.locator('input[class="input txt"]').first().waitFor();
+    // await cvvTxtBox.fill("123");
+
     //Identify edit box and enter one by one
     await page.locator("input[placeholder*='Select Country']").pressSequentially('ind', { delay: 150 });
     const dropdown = page.locator(".ta-results").first();
@@ -45,7 +50,6 @@ test.only('Client App login', async ({ page }) => {
             break;
         }
     }
-    await page.pause();
 
     expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
     await page.locator(".action__submit").click();
