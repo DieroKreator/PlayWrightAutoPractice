@@ -9,15 +9,16 @@ test.beforeAll( async ()=>
         data: loginPayload 
     })
     expect(loginResponse.ok()).toBeTruthy();
-    const loginResponseJson = loginResponse.json();
+    const loginResponseJson = await loginResponse.json();
     const token = loginResponseJson.token;
+    console.log(token);
 });
 
 test.beforeEach( () => {
     console.log("Before each of the tests");
 });
 
-test('Client App login', async ({ page }) => {
+test.only('Client App login', async ({ page }) => {
     const email = "anshika@gmail.com";
     const productName = "ZARA COAT 3";
     const products = page.locator(".card-body");
