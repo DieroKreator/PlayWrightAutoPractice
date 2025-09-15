@@ -1,6 +1,6 @@
-class APIUtils {
+class APiUtils {
 
-    constructor(apiContext)
+    constructor(apiContext, loginPayload)
     {
         this.apiContext = apiContext;
         this.loginPayload = loginPayload;
@@ -20,18 +20,22 @@ class APIUtils {
 
     async createOrder(orderPayload)
     {
-        const orderResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",
+        let response = {};
+        response.token = await this.getToken();
+        const orderResponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",
             {
                 data: orderPayload,
                 headers: {
-                            'Authorization': token,
+                            'Authorization': response.token,
                             'Content-Type': 'application/json'
                          },
             })
             const orderResponseJson = await orderResponse.json();
             console.log(orderResponseJson);
-            orderId = orderResponseJson.orders[0];   
-            return orderId;
+            const orderId = orderResponseJson.orders[0]; 
+            response.orderId = orderId;
+
+            return response;
     }
 }
-module.exports = { APIUtils };
+module.exports = { APiUtils };
