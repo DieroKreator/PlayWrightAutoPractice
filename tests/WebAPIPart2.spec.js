@@ -18,7 +18,7 @@ test.beforeAll(async ({ browser }) => {
 })
 
 
-test.only('Client App login', async () => {
+test('Client App login', async () => {
     const email = "anshika@gmail.com";
     const productName = "ZARA COAT 3";
     const page = await webContext.newPage();
@@ -90,7 +90,7 @@ test.only('Client App login', async () => {
 
 })
 
-test.only('Test case 2', async () => {
+test('Test case 2', async () => {
     const email = "";
     const productName = "ZARA COAT 3";
     const page = await webContext.newPage();
