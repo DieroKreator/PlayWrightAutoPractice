@@ -22,7 +22,7 @@ test("Pop validations", async ({ page }) => {
     textCheck.split(" ")[1];
 });
 
-test.only("Screenshot & Visual comparison", async ({ page }) => 
+test("Screenshot & Visual comparison", async ({ page }) => 
 {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     await expect(page.locator("#displayed-text")).toBeVisible();
@@ -32,4 +32,11 @@ test.only("Screenshot & Visual comparison", async ({ page }) =>
     // All page screenshot
     await page.screenshot({ path: 'screenshot.png' });
     await expect(page.locator("#displayed-text")).toBeHidden();
+});
+
+//screenshot -store -> screenshot ->
+test.only('visual', async ({ page })=>
+{
+    await page.goto("https://google.com/");
+    expect(await page.screenshot()).toMatchSnapshot('landing.png');
 });
