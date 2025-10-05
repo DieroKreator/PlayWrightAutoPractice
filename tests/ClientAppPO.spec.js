@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pageObjects/LoginPage');
+const { DashboardPage } = require('../pageObjects/DashboardPage');
 
 test('Client App login', async ({ page }) => {
     const username = "anshika@gmail.com";
@@ -9,31 +10,17 @@ test('Client App login', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goTo();
     await loginPage.validLogin(username, password);
-    await page.waitForLoadState('networkidle');
-    await page.locator(".card-body b").first().waitFor();
-    const titles = await page.locator(".card-body b").allTextContents();
-    console.log(titles);
-    const count = await products.count();
-    for (let i = 0; i < count; i++) {
-        if (await products.nth(i).locator("b").textContent() == productName) {
-            //add to cart
-            await products.nth(i).locator("button:has-text('Add To Cart')").click();
-            break;
-        }
-    }
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.searchProduct(productName);
+    await dashboardPage.navigateToCart();
+    
 
-    //Zara Coat 3
-    await page.locator("[routerlink*='cart']").click();
+    
     page.locator("ul.cartWrap li.items").first().waitFor();
 
     const bool = page.locator("h3:has-text('ZARA COAT 3')").isVisible();
     expect(bool).toBeTruthy();
     await page.locator("text=Checkout").click();
-
-    // await page.pause();
-    /* TO CHECK */
-    // const cvvTxtBox = await page.locator('input[class="input txt"]').first().waitFor();
-    // await cvvTxtBox.fill("123");
 
     //Identify edit box and enter one by one
     await page.locator("input[placeholder*='Select Country']").pressSequentially('ind', { delay: 150 });
