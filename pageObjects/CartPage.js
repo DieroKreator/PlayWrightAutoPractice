@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { expect } = require('@playwright/test');
 
 class CartPage {
 
@@ -8,7 +8,7 @@ class CartPage {
         this.productsText = page.locator(".card-body b");
         this.cart = page.locator("[routerlink*='cart']");
         this.orders = page.locator("button[routerlink*='myorders']");
-        this.checkout = page.locator("text=Checkout");
+        this.checkoutButton = page.locator("text=Checkout");
     }
 
     async verifyProductIsDisplayed(productName) {
@@ -18,7 +18,7 @@ class CartPage {
     }
 
     async checkout() {
-        await this.checkout.click();
+        await this.checkoutButton.click();
     }
 
     getProductLocator(productName) {
