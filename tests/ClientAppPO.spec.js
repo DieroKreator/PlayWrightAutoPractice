@@ -1,22 +1,23 @@
 const { test, expect } = require('@playwright/test');
 const { POManager } = require('../pageObjects/POManager');
+//Json->string->js object
+const dataset = require('../utils/placeOrderTestData.json');
 
 test('Client App login', async ({ page }) => {
     const poManager = new POManager(page);
-    const username = "anshika@gmail.com";
-    const password = "Iamking@000";
-    const productName = "ZARA COAT 3";
+
+    /*Data is coming from json file */
 
     const loginPage = poManager.getLoginPage();
     await loginPage.goTo();
-    await loginPage.validLogin(username, password);
+    await loginPage.validLogin(dataset.username, dataset.password);
 
     const dashboardPage = poManager.getDashboardPage();
-    await dashboardPage.searchProduct(productName);
+    await dashboardPage.searchProduct(dataset.productName);
     await dashboardPage.navigateToCart();
 
     const cartPage = poManager.getCartPage();
-    await cartPage.verifyProductIsDisplayed(productName);
+    await cartPage.verifyProductIsDisplayed(dataset.productName);
     await cartPage.checkout();
 
     const orderReviewPage = poManager.getOrderReviewPage();
