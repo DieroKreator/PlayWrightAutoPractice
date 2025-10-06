@@ -3,6 +3,9 @@ const { POManager } = require('../pageObjects/POManager');
 //Json->string->js object
 const dataset = require('../utils/placeOrderTestData.json');
 
+for (const data of dataset) {
+    console.log(data);
+}
 test('Client App login', async ({ page }) => {
     const poManager = new POManager(page);
 
