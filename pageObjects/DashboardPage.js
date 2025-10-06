@@ -22,5 +22,9 @@ class DashboardPage {
     async navigateToCart() {
         await this.cart.click();
     }
+
+    async navigateToOrders() {
+        await this.orders.click();
+    }
 }
 module.exports = { DashboardPage };

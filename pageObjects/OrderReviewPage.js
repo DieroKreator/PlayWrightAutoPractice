@@ -22,8 +22,9 @@ class OrderReviewPage {
             if (text.trim() === countryName) {
                 await this.dropdown.locator("button").nth(i).click();
                 break;
-            }
+            // }
         }
+    }
     }
 
     async verifyEmailId(username) {
