@@ -45,7 +45,8 @@ module.exports = defineConfig({
         browserName: 'webkit',
         headless: true,
         screenshot: 'on',
-        trace: 'on'
+        trace: 'on',
+        ...devices['iPhone 11']
       }
     },
 
@@ -55,7 +56,10 @@ module.exports = defineConfig({
         browserName: 'chromium',
         headless: false,
         screenshot: 'on',
-        trace: 'on'
+        ignoreHTTPSErrors: true,
+        permissions: ['geolocation'],
+        trace: 'on',
+        viewport: { width: 720, height: 720 }
       },
     },
 
