@@ -1,5 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
+// test.describe.configure({ mode: 'parallel' });
+test.describe.configure({ mode: 'serial' }); // if 1st fails, rest will be skipped
 test("Pop validations", async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
