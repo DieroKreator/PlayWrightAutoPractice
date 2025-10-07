@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/playwright test --headed"
+    "regression": "./node_modules/.bin/playwright test",
+    "webTests": "./node_modules/.bin/playwright test --grep @Web",
+    "APITests": "./node_modules/.bin/playwright test --grep @API",
+    "SafariNewConfig": "./node_modules/.bin/playwright test --config playwright.1.config.js --project=chrome"
   },
   "keywords": [],
   "author": "",
