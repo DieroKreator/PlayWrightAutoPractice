@@ -35,7 +35,7 @@ for (const data of dataset) {
     })
 }
 
-customtest.only(`Client App login`, async ({ page, testDataForOrder }) => {
+customtest(`Client App login`, async ({ page, testDataForOrder }) => {
     const poManager = new POManager(page);
 
     /*Data is coming from json file */
