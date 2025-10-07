@@ -1,6 +1,6 @@
 const { test, expect } = require('playwright/test');
 
-test('Browser Context-Validating Error login', async ({ browser }) => {
+test('@Web Browser Context-Validating Error login', async ({ browser }) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -46,7 +46,7 @@ test('Page Playwright test', async ({ page }) => {
     // expect(await page.title()).toBe("Google");
 });
 
-test('UI Controls', async ({ page }) => {
+test('@Web UI Controls', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const username = page.locator("#username");
     const signIn = page.locator("#signInBtn");

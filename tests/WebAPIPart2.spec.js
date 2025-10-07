@@ -90,7 +90,7 @@ test('Client App login', async () => {
 
 })
 
-test('Test case 2', async () => {
+test('@API Test case 2', async () => {
     const email = "";
     const productName = "ZARA COAT 3";
     const page = await webContext.newPage();

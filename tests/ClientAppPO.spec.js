@@ -5,7 +5,7 @@ const { POManager } = require('../pageObjects/POManager');
 const dataset = require('../utils/placeOrderTestData.json');
 
 for (const data of dataset) {
-    test(`Client App login for ${data.productName}`, async ({ page }) => {
+    test(`@Web Client App login for ${data.productName}`, async ({ page }) => {
         const poManager = new POManager(page);
 
         /*Data is coming from json file */
