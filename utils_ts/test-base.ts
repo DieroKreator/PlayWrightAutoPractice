@@ -4,7 +4,7 @@ interface TestDataForOrder {
         password: string;
         productName: string;
     };
-exports.customtest = baseTest.extend<{testDataForOrder: TestDataForOrder}>({
+export const customtest = baseTest.extend<{testDataForOrder: TestDataForOrder}>({
     testDataForOrder: {
         username: "anshika@gmail.com",
         password: "Iamking@000",
