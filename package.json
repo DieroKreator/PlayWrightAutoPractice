@@ -6,19 +6,20 @@
     "regression": "./node_modules/.bin/playwright test",
     "webTests": "./node_modules/.bin/playwright test --grep @Web",
     "APITests": "./node_modules/.bin/playwright test --grep @API",
-    "SafariNewConfig": "./node_modules/.bin/playwright test --config playwright.1.config.js --project=chrome"
+    "SafariNewConfig": "./node_modules/.bin/playwright test --config playwright.1.config.js --project=chrome",
+    "test": "cucumber-js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@cucumber/cucumber": "^12.2.0",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.7",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^12.2.0",
     "exceljs": "^4.4.0"
   }
 }
