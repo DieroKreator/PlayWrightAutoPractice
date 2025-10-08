@@ -5,7 +5,7 @@ const playwright = require('@playwright/test');
 
 Given('a login to Ecommerce application with {string} and {string}', {timeout : 100*1000}, async function (username, password) {
 
-    this.browser = await playwright.chromium.launch();
+    this.browser = await playwright.chromium.launch({ headless: false });
     this.context = (await this.browser).newContext();
     this.page = (await this.context).newPage();
     this.poManager = new POManager(this.page);
