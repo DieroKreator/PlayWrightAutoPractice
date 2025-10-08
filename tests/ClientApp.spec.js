@@ -1,6 +1,4 @@
 const { test, expect } = require('@playwright/test');
-const { assert } = require('console');
-
 
 test.skip('Client App login', async ({ page }) => {
     const email = "anshika@gmail.com";

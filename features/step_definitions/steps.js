@@ -1,35 +1,45 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { POManager } = require('../pageObjects/POManager');
-const {playwright} = require('@playwright/test');
+const { POManager } = require('../../pageObjects/POManager');
+const { expect } = require('@playwright/test');
+const playwright = require('playwright');
 
-Given('a login to Ecommerce application with {username} and {password}', async function (username, password) {
+Given('a login to Ecommerce application with {string} and {string}', async function (username, password) {
 
     const browser = playwright.chromium.launch();
-    const context = await browser.newContext();
-    const page = await context.newPage();
-    const poManager = new POManager(page);
-    const loginPage = poManager.getLoginPage();
+    const context = (await browser).newContext();
+    const page = (await context).newPage();
+    this.poManager = new POManager(page);
+    const loginPage = this.poManager.getLoginPage();
 
     await loginPage.goTo();
-    await loginPage.validLogin(data.username, data.password);
+    await loginPage.validLogin(username, password);
 });
 
-When('Add {string} to Cart', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('Add {string} to Cart', async function (productName) {
+
+    this.dashboardPage = this.poManager.getDashboardPage();
+    await dashboardPage.searchProduct(productName);
+    await dashboardPage.navigateToCart();
 });
 
-Then('Verify {string} is displayed in Cart', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then('Verify {string} is displayed in Cart', async function (productName) {
+
+    const cartPage = this.poManager.getCartPage();
+    await cartPage.verifyProductIsDisplayed(productName);
+    await cartPage.checkout();
 });
 
-When('Enter valid details and place the order', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('Enter valid details and place the order', async function () {
+
+    const orderReviewPage = this.poManager.getOrderReviewPage();
+    await orderReviewPage.searchCountryAndSelect("ind", "India");
+    const orderId = await orderReviewPage.submitAndGetOrderId();
+    console.log(orderId);
 });
 
-Then('Verify order is present in Order history', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then('Verify order is present in Order history', async function () {
+    await dashboardPage.navigateToOrders();
+    const orderHistoryPage = this.poManager.getOrderHistoryPage();
+    await orderHistoryPage.searchOrderAndSelect(orderId);
+    expect(orderId.includes(await orderHistoryPage.getOrderId())).toBeTruthy();
 });
