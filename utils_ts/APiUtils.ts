@@ -1,6 +1,10 @@
+import { server } from "typescript";
+
 class APiUtils {
 
-    constructor(apiContext, loginPayload)
+    apiContext: any;
+    loginPayload: string;
+    constructor(apiContext:any, loginPayload:string)
     {
         this.apiContext = apiContext;
         this.loginPayload = loginPayload;
@@ -18,9 +22,9 @@ class APiUtils {
         return token;
     }
 
-    async createOrder(orderPayload)
+    async createOrder(orderPayload: string)
     {
-        let response = {};
+        let response = {token: String, orderId: String};
         response.token = await this.getToken();
         const orderResponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",
             {
@@ -38,4 +42,3 @@ class APiUtils {
             return response;
     }
 }
-module.exports = { APiUtils };
