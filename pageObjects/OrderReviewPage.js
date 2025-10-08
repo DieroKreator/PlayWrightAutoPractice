@@ -37,4 +37,4 @@ class OrderReviewPage {
         return await this.orderId.textContent();
     }
 }
-exports.OrderReviewPage = OrderReviewPage;
+module.exports = { OrderReviewPage };

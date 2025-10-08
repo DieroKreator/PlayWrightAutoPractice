@@ -35,4 +35,4 @@ class POManager {
     }
 
 }
-exports.POManager = POManager;
+module.exports = { POManager };
