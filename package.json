@@ -18,6 +18,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^12.2.0",
     "exceljs": "^4.4.0"
   }
 }
