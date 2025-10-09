@@ -7,7 +7,7 @@
     "webTests": "./node_modules/.bin/playwright test --grep @Web",
     "APITests": "./node_modules/.bin/playwright test --grep @API",
     "SafariNewConfig": "./node_modules/.bin/playwright test --config playwright.1.config.js --project=chrome",
-    "test": "cucumber-js"
+    "CucumberRegression": "node node_modules/@cucumber/cucumber/bin/cucumber-js --tags'@Regression' --retry 1 --exit"
   },
   "keywords": [],
   "author": "",
