@@ -10,7 +10,6 @@ Before({ tags: "@foo" }, async function () {
 
     // Initialize your Page Object Manager
     this.poManager = new POManager(this.page);
-
 });
 
 BeforeStep(async function () {
@@ -31,7 +30,7 @@ After(async function () {
     // console.log("After hook");
     console.log("Closing browser after scenario...");
 
-    // // Properly close context and browser
-    // await this.context.close();
-    // await this.browser.close();
+    // if (this.browser) {
+    //     await this.close();
+    // }
 });
