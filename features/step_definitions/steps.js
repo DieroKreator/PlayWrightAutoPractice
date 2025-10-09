@@ -3,7 +3,7 @@ const { POManager } = require('../../pageObjects/POManager');
 const { expect } = require('@playwright/test');
 const playwright = require('@playwright/test');
 
-Given('a login to Ecommerce application with {string} and {string}', {timeout : 100*1000}, async function (username, password) {
+Given('a login to Ecommerce application with {string} and {string}', { timeout: 100 * 1000 }, async function (username, password) {
 
     // const product = this.page.locator(".card-body)");
     const loginPage = this.poManager.getLoginPage();
@@ -39,4 +39,21 @@ Then('Verify order is present in Order history', async function () {
     const orderHistoryPage = this.poManager.getOrderHistoryPage();
     await orderHistoryPage.searchOrderAndSelect(this.orderId);
     expect(this.orderId.includes(await orderHistoryPage.getOrderId())).toBeTruthy();
+});
+
+Given('a login to Ecommerce2 application with {string} and {string}', async function (username, password) {
+    
+    const usernameField = this.page.locator("#username");
+    const signInButton = this.page.locator("#signInBtn");
+    await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    console.log(await this.page.title());
+    await usernameField.fill(username);
+    await this.page.locator("[type='password']").fill(password);
+    await signInButton.click();
+});
+
+Then('Verify Error message is displayed', async function () {
+    
+    console.log(await this.page.locator("[style*='block']").textContent());
+    await expect(this.page.locator("[style*='block']")).toContainText('Incorrect');
 });
