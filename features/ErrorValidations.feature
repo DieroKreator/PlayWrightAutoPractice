@@ -2,6 +2,11 @@ Feature: Error validations
   
   @Validation
   @foo
-  Scenario: Placing an Order
-    Given a login to Ecommerce2 application with "tmoura@gmail.com" and "Iamking@000"
+  Scenario Outline: Placing an Order
+    Given a login to Ecommerce2 application with "<username>" and "<password>"
     Then Verify Error message is displayed
+
+    Examples:
+      | username          | password     |
+      | anshika@gmail.com | Iamking@000  |
+      | tmoura@gmail.com  | Iamking@000  |
