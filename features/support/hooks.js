@@ -2,15 +2,16 @@ const playwright = require('@playwright/test');
 const { POManager } = require('../../pageObjects/POManager');
 const { Before, After, BeforeStep, AfterStep, Status } = require('@cucumber/cucumber');
 
-Before(async function () {
-    // Launch browser before each scenario
-    this.browser = await playwright.chromium.launch({ headless: false });
-    this.context = await this.browser.newContext();
-    this.page = await this.context.newPage();
+Before({
+    tags: "@foo", async function() {
+        // Launch browser before each scenario
+        this.browser = await playwright.chromium.launch({ headless: false });
+        this.context = await this.browser.newContext();
+        this.page = await this.context.newPage();
 
-    // Initialize your Page Object Manager
-    this.poManager = new POManager(this.page);
-});
+        // Initialize your Page Object Manager
+        this.poManager = new POManager(this.page);
+    });
 
 BeforeStep(async function () {
     // console.log("BeforeStep hook");
